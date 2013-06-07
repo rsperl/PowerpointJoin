@@ -1,0 +1,7 @@
+file=files\a.pptx
+slides=1-2
+
+file=files\b.pptx
+slides=2-3
+
+file=files\c.pptx
