@@ -13,6 +13,17 @@ At some point I will try to build a gui for easier use.
 ## Use case
 Given a several Powerpoint presentations, you want to merge them together. You could do it within Powerpoint, but perhaps you only want slides 1, 3, 8-9, and 20 from one deck, all of the next deck, and a few more onesy-twosy slides from various other decks.
 
+## Requirements
+This script is written in Perl. Perl is available for free from either [ActiveState](http://www.activestate.com/activeperl/downloads) or [Strawberry](http://www.strawberry.com). Once that is installed, you will also need to install two modules that may not already be installed. From a command prompt, type
+
+    perl -MCPAN -e "install Win32::PowerPoint"
+
+Once that completes, double check that the second module is installed by typing
+
+    perl -MCPAN -e "install Win32::OLE"
+
+Now you're ready.
+
 ## Configuration file
 The configuration file defines which the source charts and which slides from those files are used. Blank lines and lines that start with # are ignored.
 
