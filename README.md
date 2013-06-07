@@ -78,7 +78,7 @@ The response should look like the following:
 
 To process your config file, assuming your config file is named "config.txt", type
 
-    PowerpointJion.pl --conf config.txt --output merged_charts.pptx
+    PowerpointJoin.pl --conf config.txt --output merged_charts.pptx
 
 The merged charts will be in the file "merged_charts.pptx"
 
