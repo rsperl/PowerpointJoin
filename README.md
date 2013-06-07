@@ -11,7 +11,7 @@ Should you find this application useful and want to give back, I humbly ask that
 At some point I will try to build a gui for easier use.
 
 ## Use case
-Given a several Powerpoint presentations, you want to merge them together. You could do it within Powerpoint, but perhaps you only want slides 1, 3, 8-9, and 20 from one deck, all of the next deck, and a few more onesy-twosy slides from various other decks.
+Given several Powerpoint presentations, you want to merge them together. You could do it within Powerpoint, but perhaps you only want slides 1, 3, 8-9, and 20 from one deck, all of the next deck, and a few more onesy-twosy slides from various other decks.
 
 ## Requirements
 This script is written in Perl. Perl is available for free from either [ActiveState](http://www.activestate.com/activeperl/downloads) or [Strawberry](http://www.strawberry.com). Once that is installed, you will also need to install two modules that may not already be installed. From a command prompt, type
@@ -37,13 +37,13 @@ The configuration file defines which the source charts and which slides from tho
 **Example**
 
     file=files\a.pptx
-    slides=1-2
+    slides=1-2,5,9-14
 
     file=files\b.pptx
-    slides=3
+    slides=3,5,6
 
     file=files\c.pptx
-    slides=1,3
+    slides=1,3-9
     
 ## Use
 After downloading the zip file, extract them to your hard drive, for example, in c:\PowerpointJoin. Open a command prompt (Start | All Programs | Accessories | Command Prompt). Go to this directory by typing 
@@ -64,7 +64,7 @@ The response should look like the following:
     The config file should have the following format:
 
     file=filename1.ppt
-    slides=1-4,6-8
+    slides=1-4,6-8,12
 
     file=filename2.ppt
 
