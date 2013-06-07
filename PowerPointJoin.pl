@@ -53,8 +53,6 @@ for(my $i=0; $i<@lines; $i++) {
     next if $line =~ /^$/ || $line =~ /^[#;]/;
     if ($line =~ /^file=(.+)$/) {
         $current_file = $1;
-        $config{$current_file}{start} = 1;
-        $config{$current_file}{end} = 9999;
     } elsif ( $line =~ /^slides=(.+)$/) {
         $config{$current_file}{slides} = $1;
     } else {
