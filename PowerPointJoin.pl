@@ -158,6 +158,7 @@ foreach my $key ( sort keys %config ) {
         $slides =~ s/\s+//g;
         my @ranges = split(/[;,]/, $slides);
         foreach my $range (@ranges) {
+            my $last1 = $ppt->Slides->Count;
 
             my ($start, $end); 
             if ($range =~ /^(\d+)-(\d+)$/) {
@@ -179,7 +180,7 @@ foreach my $key ( sort keys %config ) {
                 print "End:   $end\n";
                 exit;
             }
-            my $n_inserted = $ppt->Slides->InsertFromFile($file, $last, $start, $end);
+            my $n_inserted = $ppt->Slides->InsertFromFile($file, $last1, $start, $end);
             print "   > inserted $n_inserted slides (range $range)\n";
             if ( ! $n_inserted ) {
                 print "Error: No slides were inserted: " . Win32::OLE->LastError() . "\n";
