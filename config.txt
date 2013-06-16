@@ -1,7 +1,7 @@
-file=files\a.pptx
+file=c:\Users\richard\Documents\GitHub\PowerpointJoin\files\a.pptx
 slides=1-2
 
-file=files\b.pptx
+file=c:\Users\richard\Documents\GitHub\PowerpointJoin\files\b.pptx
 slides=2-3
 
-file=files\c.pptx
+file=c:\Users\richard\Documents\GitHub\PowerpointJoin\files\c.pptx

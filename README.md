@@ -8,7 +8,13 @@ Should you find this application useful and want to give back, I humbly ask that
 * [White Horse Inn](http://www.whitehorseinn.org/partnerships/support-us.html): The White Horse Inn is a blog and podcast that aims teach Christians to "know what they believe and why they believe it".
 
 ## GUI
-At some point I will try to build a gui for easier use.
+I have built a crude graphic interface using wxPerl. In order to use the GUI, you'll need to install the Wx module. See the Requirements sections for details on how to do this.
+
+Once Wx is installed, you may then run
+
+    PowerpointJoin-GUI.pl
+
+to use the graphical version.
 
 ## Use case
 Given several Powerpoint presentations, you want to merge them together. You could do it within Powerpoint, but perhaps you only want slides 1, 3, 8-9, and 20 from one deck, all of the next deck, and a few more onesy-twosy slides from various other decks.
@@ -21,6 +27,10 @@ This script is written in Perl. Perl is available for free from either [ActiveSt
 Once that completes, double check that the second module is installed by typing
 
     perl -MCPAN -e "install Win32::OLE"
+
+If you want to use the GUI, you should also run
+
+    perl -MCPAN -e "install Wx"
 
 Now you're ready.
 
