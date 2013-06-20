@@ -6,16 +6,17 @@ use Getopt::Long;
 use FindBin qw($Bin);
 use Win32::PowerpointJoin;
 
-my ($HELP, $CONFIG, $OUTPUT);
+my ($HELP, $CONFIG, $OUTPUT, $START_WITH);
 my $opts = GetOptions(
-    'help=s'   => \$HELP,
-    'config=s' => \$CONFIG,
-    'output=s' => \$OUTPUT,
+    'help=s'       => \$HELP,
+    'config=s'     => \$CONFIG,
+    'start-with=s' => \$START_WITH,
+    'output=s'     => \$OUTPUT,
 );
 
-if ($HELP || !($CONFIG && $OUTPUT) ) {
+if ($HELP || !$CONFIG && !($OUTPUT || $START_WITH) ) {
     my $msg =<<EOF;
-Usage: $0 --config <config_file> --output <output.ppt>
+Usage: $0 --config <config_file> [--start-with <charts.pptx> | --output <output.ppt>]
 
 
 The config file should have the following format:
@@ -37,4 +38,9 @@ EOF
     exit;
 }
 
-&Win32::PowerpointJoin::merge($CONFIG, $OUTPUT);
+if($START_WITH) {
+    $START_WITH = "$Bin\\$START_WITH";
+    die "Existing charts $START_WITH does not exist\n" unless -r $START_WITH;
+}
+
+&Win32::PowerpointJoin::merge($CONFIG, { start_with => $START_WITH, output => $OUTPUT});

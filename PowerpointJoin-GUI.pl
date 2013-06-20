@@ -18,7 +18,7 @@ sub new {
 
     $self->{txt_select} = Wx::StaticText->new(  $panel,
                                                 123,
-                                                "Select a configuration file",
+                                                "1) Select a configuration file",
                                                 [10, $ROW]
                                              );
 
@@ -42,7 +42,7 @@ sub new {
 
     $self->{txt_output} = Wx::StaticText->new(  $panel,
                                                 123,
-                                                "Type the name of the merged charts",
+                                                "2) Type the name of the merged charts",
                                                 [10, $ROW*3]
                                              );
     my $TEXTID_OUTPUT = 300;
@@ -50,14 +50,19 @@ sub new {
                                                 $TEXTID_OUTPUT,
                                                 'merged.pptx',
                                                 [198, ($ROW*3)-2],
-                                                [150, 20],
+                                                [180, 20],
                                                 0
                                             );
+    $self->{txt_merge} = Wx::StaticText->new(  $panel,
+                                                134323,
+                                                "3) Click ",
+                                                [10, $ROW*4]
+                                             );
     my $BTNID_MERGE = 100;
     $self->{btn_merge} = Wx::Button->new(   $panel,
                                             $BTNID_MERGE,
                                             "Merge",
-                                            [10, $ROW*4],
+                                            [50, $ROW*4-2],
                                         );
     EVT_BUTTON ( $self, $BTNID_MERGE, \&Merge);
     return $self;

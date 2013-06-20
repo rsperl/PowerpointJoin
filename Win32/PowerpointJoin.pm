@@ -11,9 +11,9 @@ use Win32::OLE::Const 'Microsoft PowerPoint';
 our $AUTOLOAD;
 
 sub merge {
-    my ($config_file, $output) = @_;
+    my ($config_file, $start_with, $output) = @_;
     my $config = &parse_config($config_file);
-    &process_charts($config, $output);
+    &process_charts($config, $start_with, $output);
 }
 
 sub parse_config {
@@ -46,7 +46,17 @@ sub parse_config {
 # $ppt->Slides
 
 sub process_charts {
-    my ($config, $output) = @_;
+    my ($config, $opts) = @_;
+
+    my $start_with = $opts->{start_with} || undef;
+    my $output     = $opts->{output}     || undef;
+    if ($start_with && $output) {
+        die "Only specify a start-with ppt or an output ppt, but not both";
+    }
+
+    my $save_file = $start_with || $output;
+    $save_file =~ s{\/}{\\}g;
+
     my %config = %$config;
     my $pp = Win32::PowerPoint->new;
 
@@ -66,8 +76,13 @@ sub process_charts {
         print "$file ($n_slides slides)\n";
     }
 
-    $pp->new_presentation;
-    my $ppt = $pp->presentation;
+    my $ppt;
+    if ($start_with) {
+        $ppt = $pp->application->Presentations->Open($save_file);
+    } else {
+        $pp->new_presentation;
+        $ppt = $pp->presentation;
+    }
 
     foreach my $key ( sort keys %config ) {
         my $file = $key;
@@ -83,8 +98,6 @@ sub process_charts {
         if (! exists $config{$key}{slides} ) {
             print "   > inserting all (1-$count)\n";
             my $n_inserted = $ppt->Slides->InsertFromFile($file, $last, 1, $count);
-            if (! $n_inserted) {
-            }
             if ( ! $n_inserted ) {
                 print "Error: No slides were inserted: " . Win32::OLE->LastError() . "\n";
                 print "File:  $file\n";
@@ -134,12 +147,14 @@ sub process_charts {
         }
     }
 
-    $pp->save_presentation($output);
+    print "Saving to $save_file\n";
+    my $result = $ppt->SaveAs( $save_file );
+    sleep 2;
     $pp->close_presentation;
     undef $pp;
 
-    if (! -f $output) {
-        print "$output did not get saved\n";
+    if (! -f $save_file) {
+        print "$save_file did not get saved\n";
     }
 }
 

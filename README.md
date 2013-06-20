@@ -8,7 +8,7 @@ Should you find this application useful and want to give back, I humbly ask that
 * [White Horse Inn](http://www.whitehorseinn.org/partnerships/support-us.html): The White Horse Inn is a blog and podcast that aims teach Christians to "know what they believe and why they believe it".
 
 ## GUI
-I have built a crude graphic interface using wxPerl. In order to use the GUI, you'll need to install the Wx module. See the Requirements sections for details on how to do this.
+I have built a crude graphic interface using wxPerl. Note that it doesn't yet support the --start-with option, that is, the ability to append files to a starting presentation. In order to use the GUI, you'll need to install the Wx module. See the Requirements sections for details on how to do this.
 
 Once Wx is installed, you may then run
 
@@ -68,7 +68,7 @@ The response should look like the following:
 
     C:\PowerpointJoin>PowerPointJoin.pl
     Usage: C:\PowerpointJoin\PowerPointJoin.pl --conf
-    ig <config_file> --output <output.ppt>
+    ig <config_file> [--start-with <start.pptx> | --output <output.ppt>]
 
 
     The config file should have the following format:
@@ -90,5 +90,9 @@ To process your config file, assuming your config file is named "config.txt", ty
 
     PowerpointJoin.pl --conf config.txt --output merged_charts.pptx
 
-The merged charts will be in the file "merged_charts.pptx"
+The merged charts will be in the file "merged_charts.pptx". Optionally, you may also do
+
+    PowerpointJoin.pl --conf config.txt --start-with existing_charts.pptx
+
+and the files defined in your config file will be appended to existing_charts.pptx. One advantage of doing it this way is that the theme of existing_charts.pptx will be preserved through the appended charts.
 
